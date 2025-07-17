@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Download Ready - Team CSB</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Download Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -13,21 +13,26 @@
     }
   </style>
 </head>
-<body class="text-white bg-black bg-opacity-80 min-h-screen flex flex-col justify-center items-center">
+<body class="text-white bg-black bg-opacity-80 min-h-screen flex flex-col justify-center items-center px-4">
 
-  <!-- Download Section -->
-  <div class="text-center bg-black bg-opacity-60 p-8 rounded-xl shadow-lg">
-    <h1 class="text-3xl md:text-4xl font-bold mb-6 drop-shadow-lg">✅ Your file is ready!</h1>
-    <a href="https://file-examples.com/wp-content/uploads/2017/10/file-example_PDF_1MB.pdf"
-       class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-xl text-lg shadow-lg"
-       download>
-      🔽 Download Now
-    </a>
+  <!-- Heading -->
+  <h1 class="text-3xl font-bold mb-6 drop-shadow-xl">🎥 Paste Your Playlist Link</h1>
+
+  <!-- Input + Button -->
+  <div class="w-full max-w-md flex flex-col space-y-4">
+    <input id="videoLink" type="text" placeholder="Paste YouTube / Facebook / Drive link here..." class="w-full p-3 rounded-lg text-black focus:outline-none" />
+
+    <button onclick="startDownload()" class="bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold shadow-xl">
+      Download Now
+    </button>
   </div>
 
-  <!-- Footer Section -->
-  <footer class="text-center mt-12 mb-6">
-    <p class="text-sm mt-6">© 2025 Powered by <strong>Team CSB</strong> | Developed by <strong>Abu Talha</strong></p>
+  <!-- Status -->
+  <p id="status" class="mt-4 text-yellow-300 font-semibold hidden">Starting download...</p>
+
+  <!-- Footer -->
+  <footer class="text-center mt-12 text-sm">
+    <p>© 2025 Powered by <strong>Team CSB</strong> | Developed by <strong>Abu Talha</strong></p>
     <div class="mt-2 space-x-4 text-blue-300">
       <a href="https://www.facebook.com/share/1HftM2q1zd/" class="hover:underline">Page</a>
       <a href="https://www.facebook.com/share/g/16ZGAdSFHv/" class="hover:underline">Group</a>
@@ -35,6 +40,28 @@
       <a href="https://www.teamcsb.com" class="hover:underline">Website</a>
     </div>
   </footer>
+
+  <!-- Script -->
+  <script>
+    function startDownload() {
+      const link = document.getElementById("videoLink").value;
+      const status = document.getElementById("status");
+
+      if (!link.trim()) {
+        alert("⚠️ Please paste a valid link!");
+        return;
+      }
+
+      status.classList.remove("hidden");
+      status.textContent = "Preparing your download...";
+
+      // Simulate redirection or backend API call
+      setTimeout(() => {
+        // Replace with actual download logic or redirect
+        window.location.href = "https://your-downloader-api.com/download?url=" + encodeURIComponent(link);
+      }, 1500);
+    }
+  </script>
 
 </body>
 </html>
