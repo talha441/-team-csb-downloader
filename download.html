@@ -3,59 +3,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Redirecting... Please wait</title>
-  <style>
-    body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 80px 20px;
-    }
-    footer {
-      margin-top: 50px;
-      font-size: 14px;
-      color: #aaa;
-    }
-  </style>
-</head>
-<body>
-  <h1>🔗 Redirecting to download site...</h1>
-  <p id="status">Processing your link. Please wait...</p>
-
-  <footer>
-    <p>Created by Abu Talha | Powered by Team CSB</p>
-  </footer>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Download Redirect</title>
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const platform = urlParams.get('platform');
-    const link = urlParams.get('link');
+    window.onload = function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const platform = urlParams.get("platform");
 
-    function redirectToExternal(link) {
-      let redirectURL = "";
+      let redirectUrl = "";
 
-      if (platform === "youtube") {
-        redirectURL = "https://yt1s.ltd/en/youtube-to-mp4?q=" + encodeURIComponent(link);
-      } else if (platform === "facebook") {
-        redirectURL = "https://fdown.net/";
-      } else if (platform === "drive") {
-        redirectURL = link.startsWith("https://drive.google.com") ? link : "https://drive.google.com";
-      } else if (platform === "terabox") {
-        redirectURL = link.startsWith("https://teraboxapp.com") ? link : "https://teraboxapp.com";
-      } else {
-        document.getElementById('status').innerText = "Unknown platform. Please try again.";
-        return;
+      switch (platform) {
+        case "youtube":
+          redirectUrl = "https://yt1s.ltd";
+          break;
+        case "facebook":
+          redirectUrl = "https://fdown.net";
+          break;
+        case "drive":
+          redirectUrl = "https://drive.google.com";
+          break;
+        case "terabox":
+          redirectUrl = "https://teraboxapp.com";
+          break;
+        default:
+          alert("Invalid platform");
+          return;
       }
 
-      window.location.href = redirectURL;
-    }
-
-    if (!link || !platform) {
-      document.getElementById('status').innerText = "Invalid link or platform.";
-    } else {
-      redirectToExternal(link);
-    }
+      // Redirect after 1.5 seconds
+      setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 1500);
+    };
   </script>
+</head>
+<body style="text-align: center; font-family: Arial; padding: 40px;">
+  <h2>Please wait while we redirect you to the secure download page...</h2>
+  <p>If not redirected, please <a id="manualLink" href="#">click here</a>.</p>
 </body>
 </html>
