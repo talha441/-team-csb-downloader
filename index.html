@@ -16,56 +16,38 @@
       text-align: center;
     }
     .content {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 30px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
       margin: 50px;
       border-radius: 20px;
-    }
-    input, select, button {
-      padding: 10px;
-      margin: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #00aaff;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0088cc;
-    }
-    footer {
-      margin-top: 50px;
-      font-size: 14px;
     }
     a.button {
       display: inline-block;
       padding: 10px 20px;
-      margin: 5px;
+      margin: 10px;
       background-color: #00aaff;
       color: white;
       border-radius: 10px;
       text-decoration: none;
+    }
+    footer {
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
   <div class="content">
     <h1>📥 Team CSB Downloader Platform</h1>
-    <p>Paste your video/file link below and select the platform:</p>
+    <p>Choose a platform to start downloading:</p>
 
-    <input type="text" id="videoLink" placeholder="Paste your video or file link here" size="50" />
-    <br />
-    <select id="platform">
-      <option value="youtube">YouTube</option>
-      <option value="facebook">Facebook</option>
-      <option value="drive">Google Drive</option>
-      <option value="terabox">Terabox</option>
-    </select>
-    <br />
-    <button onclick="startDownload()">Download Now</button>
+    <a href="download.html?platform=youtube" class="button">YouTube Playlist Download</a>
+    <a href="download.html?platform=facebook" class="button">Facebook Playlist Download</a>
+    <a href="download.html?platform=drive" class="button">Google Drive File Download</a>
+    <a href="download.html?platform=terabox" class="button">Terabox File Download</a>
+
+    <br><br>
+
+    <a href="report.html" class="button">📣 Report Any Platform</a>
 
     <footer>
       <p>Created by Abu Talha | Powered by Team CSB</p>
@@ -76,21 +58,5 @@
       </p>
     </footer>
   </div>
-
-  <script>
-    function startDownload() {
-      const link = document.getElementById("videoLink").value.trim();
-      const platform = document.getElementById("platform").value;
-
-      if (!link) {
-        alert("Please paste a valid link.");
-        return;
-      }
-
-      // Redirect to download.html with parameters
-      const redirectUrl = `download.html?platform=${encodeURIComponent(platform)}&link=${encodeURIComponent(link)}`;
-      window.location.href = redirectUrl;
-    }
-  </script>
 </body>
-  </html>
+</html>
