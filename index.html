@@ -3,50 +3,94 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Team CSB Downloader</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: url('static/logo.png') no-repeat center center fixed;
+      margin: 0;
+      padding: 0;
+      background: url("static/logo.png") no-repeat center center fixed;
       background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+    .content {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      margin: 50px;
+      border-radius: 20px;
+    }
+    input, select, button {
+      padding: 10px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #00aaff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0088cc;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+    }
+    a.button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #00aaff;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
     }
   </style>
 </head>
-<body class="text-white bg-black bg-opacity-70 min-h-screen flex flex-col justify-center items-center">
+<body>
+  <div class="content">
+    <h1>📥 Team CSB Downloader Platform</h1>
+    <p>Paste your video/file link below and select the platform:</p>
 
-  <!-- Header -->
-  <header class="text-center mb-10">
-    <h1 class="text-4xl font-extrabold drop-shadow-xl">📥 Team CSB Downloader</h1>
-    <p class="text-lg mt-2">All-in-One Downloader Platform</p>
-  </header>
+    <input type="text" id="videoLink" placeholder="Paste your video or file link here" size="50" />
+    <br />
+    <select id="platform">
+      <option value="youtube">YouTube</option>
+      <option value="facebook">Facebook</option>
+      <option value="drive">Google Drive</option>
+      <option value="terabox">Terabox</option>
+    </select>
+    <br />
+    <button onclick="startDownload()">Download Now</button>
 
-  <!-- Feature Buttons -->
-  <section class="flex flex-col space-y-4 w-full max-w-sm">
-    <a href="download.html" class="bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-lg text-center shadow-xl">
-      YouTube Playlist Downloader
-    </a>
-    <a href="download.html" class="bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-lg text-center shadow-xl">
-      Facebook Playlist Downloader
-    </a>
-    <a href="download.html" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-center shadow-xl">
-      Google Drive Downloader
-    </a>
-    <a href="download.html" class="bg-purple-600 hover:bg-purple-700 text-white py-3 px-6 rounded-lg text-center shadow-xl">
-      Terabox Downloader
-    </a>
-  </section>
+    <footer>
+      <p>Created by Abu Talha | Powered by Team CSB</p>
+      <p>
+        <a href="https://www.facebook.com/share/1HftM2q1zd/" class="button">Official Page</a>
+        <a href="https://www.facebook.com/share/g/16ZGAdSFHv/" class="button">Official Group</a>
+        <a href="https://t.me/TeamCSB404" class="button">Telegram Channel</a>
+      </p>
+    </footer>
+  </div>
 
-  <!-- Footer -->
-  <footer class="text-center mt-12 mb-4">
-    <p class="text-sm">© 2025 Powered by <strong>Team CSB</strong> | Developed by <strong>Abu Talha</strong></p>
-    <div class="mt-2 space-x-4 text-blue-300">
-      <a href="https://www.facebook.com/share/1HftM2q1zd/" class="hover:underline">Page</a>
-      <a href="https://www.facebook.com/share/g/16ZGAdSFHv/" class="hover:underline">Group</a>
-      <a href="https://t.me/TeamCSB404" class="hover:underline">Telegram</a>
-      <a href="https://www.teamcsb.com" class="hover:underline">Website</a>
-    </div>
-  </footer>
+  <script>
+    function startDownload() {
+      const link = document.getElementById("videoLink").value.trim();
+      const platform = document.getElementById("platform").value;
 
+      if (!link) {
+        alert("Please paste a valid link.");
+        return;
+      }
+
+      // Redirect to download.html with parameters
+      const redirectUrl = `download.html?platform=${encodeURIComponent(platform)}&link=${encodeURIComponent(link)}`;
+      window.location.href = redirectUrl;
+    }
+  </script>
 </body>
-</html>
+  </html>
