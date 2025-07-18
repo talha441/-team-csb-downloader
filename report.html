@@ -1,0 +1,128 @@
+<!-- report.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Platform Reporter | Team CSB</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("static/logo.png") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      margin: 50px;
+      padding: 30px;
+      border-radius: 20px;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+    .info {
+      margin-top: 30px;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+    a {
+      color: #00ccff;
+      text-decoration: underline;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📣 All Platform Reporter</h1>
+    <p>Select a platform below to view official report methods and links.</p>
+
+    <select id="platformSelector" onchange="showReportInfo()">
+      <option value="">-- Select Platform --</option>
+      <option value="youtube">YouTube</option>
+      <option value="facebook">Facebook</option>
+      <option value="playstore">Google Play Store</option>
+      <option value="tiktok">TikTok</option>
+      <option value="telegram">Telegram</option>
+      <option value="whatsapp">WhatsApp</option>
+      <option value="website">Any Website</option>
+    </select>
+
+    <div class="info" id="reportInfo">
+      <!-- Report details will appear here -->
+    </div>
+
+    <footer>
+      <p>Developed by Abu Talha | Team CSB</p>
+      <img src="static/logo.png" alt="Team CSB Logo" width="100" />
+    </footer>
+  </div>
+
+  <script>
+    const infoData = {
+      youtube: {
+        title: "📺 YouTube Report Guide",
+        description: "You can report YouTube videos, channels or comments via the official link below.",
+        link: "https://support.google.com/youtube/answer/2802027"
+      },
+      facebook: {
+        title: "📘 Facebook Report Guide",
+        description: "Report profiles, pages, or content using Facebook’s official report system.",
+        link: "https://www.facebook.com/help/181495968648557"
+      },
+      playstore: {
+        title: "📱 Google Play Store Report Guide",
+        description: "You can report an app that violates policies using Google’s report page.",
+        link: "https://support.google.com/googleplay/android-developer/contact/takedown"
+      },
+      tiktok: {
+        title: "🎵 TikTok Report Guide",
+        description: "Report TikTok videos, accounts, or comments through this page.",
+        link: "https://support.tiktok.com/en/safety-hc/report-a-problem"
+      },
+      telegram: {
+        title: "✈️ Telegram Report Guide",
+        description: "Use this link to report fake accounts, channels, or abusive content.",
+        link: "https://telegram.org/faq#q-how-do-i-report-something"
+      },
+      whatsapp: {
+        title: "📞 WhatsApp Report Guide",
+        description: "You can report messages, users, or spam using WhatsApp's guide below.",
+        link: "https://faq.whatsapp.com/general/security-and-privacy/how-to-report-suspicious-contacts-and-messages"
+      },
+      website: {
+        title: "🌐 Website Report Guide",
+        description: "To report any website, use this link to submit abuse or DMCA reports.",
+        link: "https://safebrowsing.google.com/safebrowsing/report_badware/"
+      }
+    };
+
+    function showReportInfo() {
+      const selected = document.getElementById('platformSelector').value;
+      const container = document.getElementById('reportInfo');
+
+      if (selected && infoData[selected]) {
+        container.innerHTML = `
+          <h2>${infoData[selected].title}</h2>
+          <p>${infoData[selected].description}</p>
+          <p><a href="${infoData[selected].link}" target="_blank">🔗 Report Now</a></p>
+        `;
+      } else {
+        container.innerHTML = "";
+      }
+    }
+  </script>
+</body>
+</html>
