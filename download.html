@@ -3,65 +3,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Download Page</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Redirecting... Please wait</title>
   <style>
     body {
-      background: url('static/logo.png') no-repeat center center fixed;
-      background-size: cover;
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #aaa;
     }
   </style>
 </head>
-<body class="text-white bg-black bg-opacity-80 min-h-screen flex flex-col justify-center items-center px-4">
+<body>
+  <h1>🔗 Redirecting to download site...</h1>
+  <p id="status">Processing your link. Please wait...</p>
 
-  <!-- Heading -->
-  <h1 class="text-3xl font-bold mb-6 drop-shadow-xl">🎥 Paste Your Playlist Link</h1>
-
-  <!-- Input + Button -->
-  <div class="w-full max-w-md flex flex-col space-y-4">
-    <input id="videoLink" type="text" placeholder="Paste YouTube / Facebook / Drive link here..." class="w-full p-3 rounded-lg text-black focus:outline-none" />
-
-    <button onclick="startDownload()" class="bg-green-600 hover:bg-green-700 py-3 rounded-lg font-semibold shadow-xl">
-      Download Now
-    </button>
-  </div>
-
-  <!-- Status -->
-  <p id="status" class="mt-4 text-yellow-300 font-semibold hidden">Starting download...</p>
-
-  <!-- Footer -->
-  <footer class="text-center mt-12 text-sm">
-    <p>© 2025 Powered by <strong>Team CSB</strong> | Developed by <strong>Abu Talha</strong></p>
-    <div class="mt-2 space-x-4 text-blue-300">
-      <a href="https://www.facebook.com/share/1HftM2q1zd/" class="hover:underline">Page</a>
-      <a href="https://www.facebook.com/share/g/16ZGAdSFHv/" class="hover:underline">Group</a>
-      <a href="https://t.me/TeamCSB404" class="hover:underline">Telegram</a>
-      <a href="https://www.teamcsb.com" class="hover:underline">Website</a>
-    </div>
+  <footer>
+    <p>Created by Abu Talha | Powered by Team CSB</p>
   </footer>
 
-  <!-- Script -->
   <script>
-    function startDownload() {
-      const link = document.getElementById("videoLink").value;
-      const status = document.getElementById("status");
+    const urlParams = new URLSearchParams(window.location.search);
+    const platform = urlParams.get('platform');
+    const link = urlParams.get('link');
 
-      if (!link.trim()) {
-        alert("⚠️ Please paste a valid link!");
+    function redirectToExternal(link) {
+      let redirectURL = "";
+
+      if (platform === "youtube") {
+        redirectURL = "https://yt1s.ltd/en/youtube-to-mp4?q=" + encodeURIComponent(link);
+      } else if (platform === "facebook") {
+        redirectURL = "https://fdown.net/";
+      } else if (platform === "drive") {
+        redirectURL = link.startsWith("https://drive.google.com") ? link : "https://drive.google.com";
+      } else if (platform === "terabox") {
+        redirectURL = link.startsWith("https://teraboxapp.com") ? link : "https://teraboxapp.com";
+      } else {
+        document.getElementById('status').innerText = "Unknown platform. Please try again.";
         return;
       }
 
-      status.classList.remove("hidden");
-      status.textContent = "Preparing your download...";
+      window.location.href = redirectURL;
+    }
 
-      // Simulate redirection or backend API call
-      setTimeout(() => {
-        // Replace with actual download logic or redirect
-        window.location.href = "https://your-downloader-api.com/download?url=" + encodeURIComponent(link);
-      }, 1500);
+    if (!link || !platform) {
+      document.getElementById('status').innerText = "Invalid link or platform.";
+    } else {
+      redirectToExternal(link);
     }
   </script>
-
 </body>
 </html>
